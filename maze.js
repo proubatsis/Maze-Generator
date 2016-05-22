@@ -129,7 +129,6 @@ Maze.prototype.reset = function()
 /**
 * Generate the maze starting from the cell at the given coordinates.
 *
-
 * @param {object} coord - Coordinate to start the maze generation from.
 * @param {int} coord.x - x coordinate to start the maze generation from.
 * @param {int} coord.y - y coordinate to start the maze generation from.
@@ -170,7 +169,6 @@ Maze.prototype.generate = function(coord)
 
 /**
 * Draw the maze on an HTML canvas.
-
 *
 * @param {str} canvasId - id of the canvas.
 * @param {int} wallSize - length/width of square cell wall.
