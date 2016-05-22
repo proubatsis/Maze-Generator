@@ -12,10 +12,15 @@
             
             function generateMaze()
             {
+                var startCoord = {
+                    x: Math.floor(Math.random() * MAZE_SIZE),
+                    y: Math.floor(Math.random() * MAZE_SIZE)
+                };
+                
                 document.getElementById(CANVAS_ID).getContext("2d").clearRect(0, 0, WIDTH, HEIGHT);
                 maze = new Maze(MAZE_SIZE, MAZE_SIZE);
                 maze.reset();
-                maze.generate({x: 0, y:0});
+                maze.generate(startCoord);
                 maze.draw(CANVAS_ID, WALL_LENGTH, WALL_COLOR);
             }
         </script>
