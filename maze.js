@@ -4,10 +4,24 @@
 // maze.generate({x: 0, y:0});
 // maze.draw("mazeCanvas", 16, "#0f0");
 
+/** @const {int} */
 WALL_TOP = 1 << 3;
+
+/** @const {int} */
 WALL_RIGHT = 1 << 2;
+
+/** @const {int} */
 WALL_BOTTOM = 1 << 1;
+
+/** @const {int} */
 WALL_LEFT = 1 << 0;
+
+/**
+* @typedef Coordinate
+* @type {object}
+* @property {int} x - x coordinate
+* @property {int} y - y coordinate
+*/
 
 /**
 * A cell is the maze.
@@ -18,16 +32,41 @@ WALL_LEFT = 1 << 0;
 */
 function MazeCell(x, y, walls)
 {
+    /**
+    * x-coordinate of the cell
+    * @member {int}
+    */
     this.x = x;
+    
+    /**
+    * x-coordinate of the cell
+    * @member {int}
+    */
     this.y = y;
+    
+    /**
+    * The walls of a cell represented as bits in the number
+    * @member {int}
+    */
     this.walls = walls;
-    this.adjacentCells = [];    // x and y coordinates of each adjacent cell
-    this.visited = false;       // Used for maze generation
+    
+    /**
+    * x and y coordinates of each adjacent cell
+    * @member {Coordinate[]}
+    */
+    this.adjacentCells = [];
+    
+    /**
+    Has the cell been visited by the maze generator?
+    * @member {boolean}
+    */
+    this.visited = false;
 }
 
 /**
 * Return the adjacent cell coordinates that have not been visited.
 * @param {Maze} maze - Maze to check the adjacent cells in
+* @returns {Coordinate[]} Adjacent unvisited cell coordinates
 */
 MazeCell.prototype.getUnvisitedAdjacents = function(maze)
 {
@@ -81,7 +120,16 @@ function breakCellWalls(cellA, cellB, wall)
 */
 function Maze(width, height)
 {
+    /**
+    * Width of the maze in cells.
+    * @member {int}
+    */
     this.width = width;
+    
+    /**
+    * Height of the maze in cells.
+    * @member {int}
+    */
     this.height = height;
 }
 
@@ -129,9 +177,7 @@ Maze.prototype.reset = function()
 /**
 * Generate the maze starting from the cell at the given coordinates.
 *
-* @param {object} coord - Coordinate to start the maze generation from.
-* @param {int} coord.x - x coordinate to start the maze generation from.
-* @param {int} coord.y - y coordinate to start the maze generation from.
+* @param {Coordinate} coord - Coordinate to start the maze generation from.
 */
 Maze.prototype.generate = function(coord)
 {
@@ -170,9 +216,9 @@ Maze.prototype.generate = function(coord)
 /**
 * Draw the maze on an HTML canvas.
 *
-* @param {str} canvasId - id of the canvas.
+* @param {string} canvasId - id of the canvas.
 * @param {int} wallSize - length/width of square cell wall.
-* @param {str} color - Hex representation of a color (Starts with #)
+* @param {string} color - Hex representation of a color (Starts with #)
 */
 Maze.prototype.draw = function(canvasId, wallSize, color)
 {
