@@ -1,0 +1,16 @@
+<html>
+    <head>
+        <title>Maze Generation</title>
+        <script type="text/javascript" src="maze.js"></script>
+    </head>
+    
+    <body>
+        <canvas id="mazeCanvas" width="1000" height="1000"></canvas>
+        <script>
+            maze = new Maze(64, 64);
+            maze.reset();
+            maze.generate({x: 0, y:0});
+            maze.draw("mazeCanvas", 12, "#0f0");
+        </script>
+    </body>
+</html>
