@@ -2,15 +2,29 @@
     <head>
         <title>Maze Generation</title>
         <script type="text/javascript" src="maze.js"></script>
+        <script type="text/javascript">
+            CANVAS_ID = "mazeCanvas";
+            WIDTH = 800;
+            HEIGHT = 800;
+            MAZE_SIZE = 64;
+            WALL_LENGTH = 12;
+            WALL_COLOR = "#0a0";
+            
+            function generateMaze()
+            {
+                document.getElementById(CANVAS_ID).getContext("2d").clearRect(0, 0, WIDTH, HEIGHT);
+                maze = new Maze(MAZE_SIZE, MAZE_SIZE);
+                maze.reset();
+                maze.generate({x: 0, y:0});
+                maze.draw(CANVAS_ID, WALL_LENGTH, WALL_COLOR);
+            }
+        </script>
     </head>
     
-    <body>
-        <canvas id="mazeCanvas" width="1000" height="1000"></canvas>
-        <script>
-            maze = new Maze(64, 64);
-            maze.reset();
-            maze.generate({x: 0, y:0});
-            maze.draw("mazeCanvas", 12, "#0f0");
-        </script>
+    <body onLoad="generateMaze();">
+        <canvas id="mazeCanvas" width="800" height="800"></canvas>
+        <br/>
+        <input type="button" value="Generate New Maze" onClick="generateMaze();"/>
     </body>
 </html>
+
